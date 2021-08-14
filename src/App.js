@@ -4,8 +4,8 @@ import Layout from "./components/Layout/Layout";
 import UserProfile from "./components/Profile/UserProfile";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
+import QuestionsPage from "./pages/QuestionsPage";
 import AuthContext from "./store/auth-context";
-import "bootstrap/dist/css/bootstrap.min.css";
 import RegistrationPage from "./pages/RegistrationPage";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -26,6 +26,9 @@ function App() {
 
         <Route path="/register">
           <RegistrationPage />
+        </Route>
+        <Route path="/questions">
+          <QuestionsPage />
         </Route>
 
         <Route path="/profile">

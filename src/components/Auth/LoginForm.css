@@ -76,23 +76,11 @@ h2 {
   font-size: 36px;
 }
 
-.main {
-  background: #f8f8f8;
-  padding: 150px 0;
-}
 
 .clear {
   clear: both;
 }
 
-body {
-  font-size: 13px;
-  line-height: 1.8;
-  color: #222;
-  background: #f8f8f8;
-  font-weight: 400;
-
-}
 
 .container_2 {
   width: 900px;

@@ -1,0 +1,31 @@
+.category_item{
+    background: white;
+    border-radius: 20px;
+    border: 1px solid rgb(236, 236, 236);
+    box-shadow: black;
+    display:inline-block;
+    margin-right: 1rem;
+    padding: 0.3rem 1.2rem;
+    box-shadow: 0px 1px 19.83px 0 rgba(0, 0, 0, 0.15);
+    color: rgb(66, 66, 66);
+}
+
+.category_item:hover{
+    background: #141f2f;
+    color: white;
+
+}
+
+.categoriesList_container{
+    margin-top: 1rem;
+}
+
+.question_item{
+  
+    display:inline-block;
+    width: 25rem;
+    margin-right: 1rem;
+   
+    margin: 1rem;
+
+}

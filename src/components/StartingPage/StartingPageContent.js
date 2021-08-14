@@ -1,10 +1,10 @@
-import classes from "./StartingPageContent.module.css";
+import "./StartingPageContent.css";
 import img from "./pngwing.com.png";
 
 const StartingPageContent = () => {
   return (
     <div className="container">
-      <section className={classes.starting}>
+      <section className="starting">
         <h2>StiCast!</h2>
         is a forecasting platform where payoffs are tied to the outcomes of
         future events. Participants trade contracts associated to the occurrence
