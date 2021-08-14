@@ -16,7 +16,8 @@ const RegisterForm = (props) => {
   const [enteredPasswordTouched, setenteredPasswordTouched] = useState(false);
 
   const [enteredMatchedPassword, setenteredMatchedPassword] = useState("");
-  const [enteredPasswordMatchedTouched, setenteredPasswordMatchedTouched] = useState(false);
+  const [enteredPasswordMatchedTouched, setenteredPasswordMatchedTouched] =
+    useState(false);
 
   const [enteredEmail, setenteredEmail] = useState("");
   const [enteredEmailTouched, setenteredEmailTouched] = useState(false);
@@ -30,14 +31,13 @@ const RegisterForm = (props) => {
     !enteredPasswordIsValid && enteredPasswordTouched;
 
   const enteredMatchedPasswordIsValid =
-    enteredPassword.trim() === enteredMatchedPassword.trim() && enteredPassword.trim() !== '';
+    enteredPassword.trim() === enteredMatchedPassword.trim() &&
+    enteredPassword.trim() !== "";
   const enteredMatchedPasswordIsInvalid =
     !enteredMatchedPasswordIsValid && enteredPasswordMatchedTouched;
 
   const enteredEmailIsValid = enteredEmail.includes("@");
   const enteredEmailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
-
-  const [returnedData, setReturnedData] = useState(false);
 
   let formIsValid = false;
 
@@ -95,7 +95,7 @@ const RegisterForm = (props) => {
     setenteredPasswordTouched(true);
     setenteredPasswordMatchedTouched(true);
     setenteredEmailTouched(true);
-    
+
     if (!formIsValid) {
       console.log("prova");
       return;
@@ -113,54 +113,58 @@ const RegisterForm = (props) => {
         "Content-Type": "application/json",
       },
     })
-    .then((response) => {
-      if (!response.ok) {
-        setProva(true);
-        setenteredUsername("");
-        setenteredPassword("");
-        setenteredMatchedPassword("");
-        setenteredEmail("");
-        setenteredUsernameTouched(false);
-        setenteredPasswordTouched(false);
-        setenteredEmailTouched(false);
-        setenteredPasswordMatchedTouched(false);
-        setShowMessage(true);
-        return Promise.reject("Username or Password already exist!");
-      } else {
-        return response.json();
-      }
-    })
-    .then((data) => {
-      console.log(data);
-      const expirationTime = new Date(
-        new Date().getTime() + +data.expirationTime * 1000
-      );
-      authCtx.login(data, expirationTime.toISOString());
-      history.replace("/");
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-      
+      .then((response) => {
+        if (!response.ok) {
+          setProva(true);
+          setenteredUsername("");
+          setenteredPassword("");
+          setenteredMatchedPassword("");
+          setenteredEmail("");
+          setenteredUsernameTouched(false);
+          setenteredPasswordTouched(false);
+          setenteredEmailTouched(false);
+          setenteredPasswordMatchedTouched(false);
+          setShowMessage(true);
+          return Promise.reject("Username or Password already exist!");
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        const expirationTime = new Date(
+          new Date().getTime() + +data.expirationTime * 1000
+        );
+        authCtx.login(data, expirationTime.toISOString());
+        history.replace("/");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
+
+  const usernameInputClasses = usenameInputIsInvalid ? "input_error" : "";
+  const passwordInputClasses = enteredPasswordIsInvalid ? "input_error" : "";
+  const matchedPasswordInputClasses = enteredMatchedPasswordIsInvalid
+    ? "input_error"
+    : "";
+  const emailInputClasses = enteredEmailIsInvalid ? "input_error" : "";
 
   return (
     <div className="main">
       <section className="signup">
-
-
         <div className="container_2">
           <div className="signup-content">
             <div className="signup-form">
               <h2 className="form-title">Registration</h2>
-                      
-      <CSSTransition
+
+              <CSSTransition
                 in={showMessage}
                 timeout={300}
                 classNames="alert"
                 unmountOnExit
               >
-                <div variant="primary" dismissible className="alert_active">
+                <div variant="primary" className="alert_active">
                   <p>Username or Password already exists!</p>
                 </div>
               </CSSTransition>
@@ -170,88 +174,84 @@ const RegisterForm = (props) => {
                 id="register-form"
               >
                 <div className="form-group">
-                  <label for="name">
-                  <i class="bi bi-person-fill"></i>
+                  <label>
+                    <i className="bi bi-person-fill"></i>
                   </label>
                   <input
+                    className={usernameInputClasses}
                     type="text"
-                    name="name"
-                    id="name"
                     placeholder="Your Username"
                     onChange={usernameChangeHandler}
                     onBlur={usernameBlurHandler}
                     value={enteredUsername}
                   />
+                </div>
+                <CSSTransition
+                  in={usenameInputIsInvalid && !prova}
+                  timeout={300}
+                  classNames="alert"
+                  unmountOnExit
+                >
+                  <div variant="primary">
+                    <p className="error-text">Username must not be empty!</p>
                   </div>
-                  <CSSTransition
-                    in={usenameInputIsInvalid && !prova}
-                    timeout={300}
-                    classNames="alert"
-                    unmountOnExit
-                  >
-                    <div variant="primary" dismissible>
-                      <p className="error-text">Username must not be empty!</p>
-                    </div>
-                  </CSSTransition>
-                
+                </CSSTransition>
+
                 <div className="form-group">
-                  <label for="email">
-                  <i class="bi bi-envelope-fill"></i>
+                  <label>
+                    <i className="bi bi-envelope-fill"></i>
                   </label>
                   <input
+                    className={emailInputClasses}
                     type="email"
-                    name="email"
-                    id="email"
                     placeholder="Your Email"
                     onChange={emailChangeHandler}
                     onBlur={emailBlurHandler}
                     value={enteredEmail}
                   />
+                </div>
+                <CSSTransition
+                  in={enteredEmailIsInvalid && !prova}
+                  timeout={300}
+                  classNames="alert"
+                  unmountOnExit
+                >
+                  <div variant="primary">
+                    <p className="error-text">Invalid email!</p>
                   </div>
-                   <CSSTransition
-                    in={enteredEmailIsInvalid && !prova}
-                    timeout={300}
-                    classNames="alert"
-                    unmountOnExit
-                  >
-                    <div variant="primary" dismissible>
-                      <p className="error-text">Invalid email!</p>
-                    </div>
-                  </CSSTransition>
-                
+                </CSSTransition>
+
                 <div className="form-group">
-                  <label for="pass">
-                  <i class="bi bi-lock-fill"></i>
+                  <label>
+                    <i className="bi bi-lock-fill"></i>
                   </label>
                   <input
+                    className={passwordInputClasses}
                     type="password"
-                    name="pass"
-                    id="pass"
                     placeholder="Password"
                     onChange={passwordChangeHandler}
                     onBlur={passwordBlurHandler}
                     value={enteredPassword}
                   />
+                </div>
+                <CSSTransition
+                  in={enteredPasswordIsInvalid && !prova}
+                  timeout={300}
+                  classNames="alert"
+                  unmountOnExit
+                >
+                  <div variant="primary">
+                    <p className="error-text">Password must not be empty!</p>
                   </div>
-                     <CSSTransition
-                    in={enteredPasswordIsInvalid && !prova}
-                    timeout={300}
-                    classNames="alert"
-                    unmountOnExit
-                  >
-                    <div variant="primary" dismissible>
-                      <p className="error-text">Password must not be empty!</p>
-                    </div>
-                  </CSSTransition>
-                
+                </CSSTransition>
+
                 <div className="form-group">
-                  <label for="re-pass">
-                  <i class="bi bi-lock"></i>
+                  <label>
+                    <i className="bi bi-lock"></i>
                   </label>
                   <input
+                    className={matchedPasswordInputClasses}
                     type="password"
-                    name="re_pass"
-                    id="re_pass"
                     placeholder="Repeat your password"
                     onChange={passwordMatchedChangeHandler}
                     onBlur={passwordMatchedBlurHandler}
@@ -259,16 +259,16 @@ const RegisterForm = (props) => {
                   />
                 </div>
                 <CSSTransition
-                    in={enteredMatchedPasswordIsInvalid && !prova}
-                    timeout={300}
-                    classNames="alert"
-                    unmountOnExit
-                  >
-                    <div variant="primary" dismissible>
-                      <p className="error-text">Passwords has to match!</p>
-                    </div>
-                  </CSSTransition>
-                
+                  in={enteredMatchedPasswordIsInvalid && !prova}
+                  timeout={300}
+                  classNames="alert"
+                  unmountOnExit
+                >
+                  <div variant="primary">
+                    <p className="error-text">Passwords has to match!</p>
+                  </div>
+                </CSSTransition>
+
                 <div className="form-group form-button">
                   <input
                     type="submit"

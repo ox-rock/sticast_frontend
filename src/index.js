@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { AuthContextProvider } from './store/auth-context';
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 ReactDOM.render(
   <AuthContextProvider>

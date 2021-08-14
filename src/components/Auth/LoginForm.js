@@ -11,7 +11,7 @@ const LoginForm = (props) => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
 
-  const [isLoading, setIsLoading] = useState(false);
+  //const [isLoading, setIsLoading] = useState(false);
 
   const [enteredUsername, setenteredUsername] = useState("");
   const [enteredUsernameTouched, setenteredUsernameTouched] = useState(false);
@@ -98,110 +98,101 @@ const LoginForm = (props) => {
       });
   };
 
-  const nameInputClasses = usenameInputIsInvalid
-    ? "form-control invalid"
-    : "form-control";
+  const usernameInputClasses = usenameInputIsInvalid ? "input_error" : "";
 
-  const emailInputClasses = enteredPasswordIsInvalid
-    ? "form-control invalid"
-    : "form-control";
+  const passwordInputClasses = enteredPasswordIsInvalid ? "input_error" : "";
 
   return (
-    <div className="main">
-      <section className="signin">
-        <div className="container_2">
-          <div className="signin-content">
-            <div className="signin-image">
-              <figure>
-                <img src={signinimg} alt="sing up"></img>
-              </figure>
-            </div>
+    <section className="signin">
+      <div className="container_2">
+        <div className="signin-content">
+          <div className="signin-image">
+            <figure>
+              <img src={signinimg} alt="sing up"></img>
+            </figure>
+          </div>
 
-            <div className="signin-form">
-              <h2 className="form-title">Login</h2>
+          <div className="signin-form">
+            <h2 className="form-title">Login</h2>
 
+            <CSSTransition
+              in={showMessage}
+              timeout={300}
+              classNames="alert"
+              unmountOnExit
+            >
+              <div variant="primary" className="alert_active">
+                <p>Invalid credentials!</p>
+              </div>
+            </CSSTransition>
+
+            <form
+              onSubmit={formSubmissionHandler}
+              className="register-form"
+              id="login-form"
+            >
+              <div className="form-group">
+                <label>
+                  <i className="bi bi-person-fill"></i>
+                </label>
+                <input
+                  className={usernameInputClasses}
+                  type="text"
+                  value={enteredUsername}
+                  onChange={usernameChangeHandler}
+                  onBlur={usernameBlurHandler}
+                  placeholder="Username"
+                />
+              </div>
               <CSSTransition
-                in={showMessage}
+                in={usenameInputIsInvalid && !prova}
                 timeout={300}
                 classNames="alert"
                 unmountOnExit
               >
-                <div variant="primary" dismissible className="alert_active">
-                  <p>Invalid credentials!</p>
+                <div variant="primary">
+                  <p className="error-text">Username must not be empty!</p>
                 </div>
               </CSSTransition>
 
-              <form
-                onSubmit={formSubmissionHandler}
-                className="register-form"
-                id="login-form"
+              <div className="form-group">
+                <label>
+                  <i className="bi bi-lock-fill"></i>
+                </label>
+                <input
+                  className={passwordInputClasses}
+                  type="password"
+                  value={enteredPassword}
+                  onChange={passwordChangeHandler}
+                  onBlur={passwordBlurHandler}
+                  placeholder="Password"
+                />
+              </div>
+              <CSSTransition
+                in={enteredPasswordIsInvalid && !prova}
+                timeout={300}
+                classNames="alert"
+                unmountOnExit
               >
-                <div className="form-group">
-                  <label for="your_name">
-                    <i class="bi bi-person-fill"></i>
-                  </label>
-                  <input
-                    type="text"
-                    name="your_name"
-                    id="your_name"
-                    value={enteredUsername}
-                    onChange={usernameChangeHandler}
-                    onBlur={usernameBlurHandler}
-                    placeholder="Your Name"
-                  />
+                <div variant="primary">
+                  <p className="error-text">Password must not be empty!</p>
                 </div>
-                <CSSTransition
-                  in={usenameInputIsInvalid && !prova}
-                  timeout={300}
-                  classNames="alert"
-                  unmountOnExit
-                >
-                  <div variant="primary" dismissible>
-                    <p className="error-text">Username must not be empty!</p>
-                  </div>
-                </CSSTransition>
+              </CSSTransition>
 
-                <div className="form-group">
-                  <label for="your_password">
-                  <i class="bi bi-lock-fill"></i>
-                  </label>
-                  <input
-                    type="password"
-                    name="your_pass"
-                    id="your_pass"
-                    value={enteredPassword}
-                    onChange={passwordChangeHandler}
-                    onBlur={passwordBlurHandler}
-                    placeholder="Password"
-                  />
-                  </div>
-                  <CSSTransition
-                    in={enteredPasswordIsInvalid && !prova}
-                    timeout={300}
-                    classNames="alert"
-                    unmountOnExit
-                  >
-                    <div variant="primary" dismissible>
-                      <p className="error-text">Password must not be empty!</p>
-                    </div>
-                  </CSSTransition>
-                
-
-                <div className="form-group form-button">
-                  <input
-                    type="submit"
-                    name="signin"
-                    id="signin"
-                    className="form-submit"
-                    value="Log in"
-                  />
-                </div>
-              </form>
-            </div>
+              <div className="form-group form-button">
+                <input
+                  type="submit"
+                  name="signin"
+                  id="signin"
+                  className="form-submit"
+                  value="Log in"
+                />
+              </div>
+            </form>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

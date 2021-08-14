@@ -1,7 +1,6 @@
 .starting {
-  margin: 3rem auto;
   text-align: justify;
-  animation: arrive 300ms ease-in-out 0.1s forwards;
+  animation: arrive 500ms ease-in-out 0.1s forwards;
   opacity: 0;
 }
 
@@ -11,7 +10,7 @@
 }
 
 section > img {
-  width: 30%;
+  width: 16rem;
 }
 
 @keyframes arrive {

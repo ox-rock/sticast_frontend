@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import QuestionsPage from "./pages/QuestionsPage";
 import AuthContext from "./store/auth-context";
 import RegistrationPage from "./pages/RegistrationPage";
-import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 function App() {
   const authCtx = useContext(AuthContext);

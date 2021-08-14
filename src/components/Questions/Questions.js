@@ -11,6 +11,7 @@ const Questions = () => {
   const authCtx = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
+  
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -37,7 +38,7 @@ const Questions = () => {
     };
 
     fetchCategories();
-  }, []);
+  }, [authCtx.token]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -65,7 +66,7 @@ const Questions = () => {
     };
 
     fetchQuestions();
-  }, []);
+  }, [authCtx.token]);
 
   const categoriesList = categories.map((category) => (
     <CategoryItem

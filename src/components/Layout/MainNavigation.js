@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import classes from "./MainNavigation.module.css";
-import { Dropdown, DropdownButton} from "react-bootstrap";
 
 const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
@@ -28,11 +27,14 @@ const MainNavigation = () => {
           {!isLoggedIn && (
             <div>
               <li>
-              <i class="bi bi-person-fill" style={{color: 'white'}}></i>
+                <i className="bi bi-person-fill" style={{ color: "white" }}></i>
                 <Link to="/login">Login</Link>
               </li>
               <li>
-              <i class="bi bi-person-plus-fill" style={{color: 'white'}}></i>
+                <i
+                  className="bi bi-person-plus-fill"
+                  style={{ color: "white" }}
+                ></i>
                 <Link to="/register"> Register</Link>
               </li>
             </div>
@@ -40,21 +42,24 @@ const MainNavigation = () => {
           {isLoggedIn && (
             <li>
               <Link to="/questions">Questions</Link>
-              
             </li>
           )}
           {isLoggedIn && (
-           <div>
-           <DropdownButton className={classes.myd} title={username} >
-           <Dropdown.Item><Link to="/profile">Profile</Link></Dropdown.Item>
-           <Dropdown.Item onClick={logoutHandler}>Logout</Dropdown.Item>
-           <div class="dropdown-divider"></div>
-           <Dropdown.Item>Budget: {userBudget}$</Dropdown.Item>
+
+
+<div class={classes.dropdown}>
+  <button class={classes.dropbtn}><i className="bi bi-person-circle"></i> {username} <i className="bi bi-caret-down-fill"></i></button>
+  <div class={classes.dropdowncontent}>
+  <Link to="/profile">Profile</Link>
+  <Link to="/logout" onClick={logoutHandler}>Logout</Link>
+  <hr className={classes.solid}></hr>
+  <Link to="/#">Budget: {userBudget}$</Link>
+  </div>
+</div>
+
+
            
-         </DropdownButton>
-         </div>
           )}
-            
         </ul>
       </nav>
     </header>
