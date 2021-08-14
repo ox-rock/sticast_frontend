@@ -1,0 +1,28 @@
+.starting {
+  margin: 3rem auto;
+  text-align: justify;
+  animation: arrive 300ms ease-in-out 0.1s forwards;
+  opacity: 0;
+}
+
+.starting h2 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+section > img {
+  width: 30%;
+}
+
+@keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100px, 0);
+    }
+    
+    
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
