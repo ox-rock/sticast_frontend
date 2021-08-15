@@ -7,6 +7,8 @@ import signinimg from "./signin.jpg";
 
 const LoginForm = (props) => {
   const [showMessage, setShowMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [prova, setProva] = useState(false);
   const history = useHistory();
   const authCtx = useContext(AuthContext);
@@ -73,25 +75,25 @@ const LoginForm = (props) => {
       },
     })
       .then((response) => {
-        if (!response.ok) {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.status !== 200) {
           setProva(true);
           setenteredUsername("");
           setenteredPassword("");
           setenteredUsernameTouched(false);
           setenteredPasswordTouched(false);
+          setErrorMessage(data.errors);
           setShowMessage(true);
-          return Promise.reject("Bad credentials");
         } else {
-          return response.json();
+          console.log(data);
+          const expirationTime = new Date(
+            new Date().getTime() + +data.expirationTime * 1000
+          );
+          authCtx.login(data, expirationTime.toISOString());
+          history.replace("/");
         }
-      })
-      .then((data) => {
-        console.log(data);
-        const expirationTime = new Date(
-          new Date().getTime() + +data.expirationTime * 1000
-        );
-        authCtx.login(data, expirationTime.toISOString());
-        history.replace("/");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -122,7 +124,7 @@ const LoginForm = (props) => {
               unmountOnExit
             >
               <div variant="primary" className="alert_active">
-                <p>Invalid credentials!</p>
+                <p>{errorMessage}</p>
               </div>
             </CSSTransition>
 

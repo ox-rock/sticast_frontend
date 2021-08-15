@@ -57,6 +57,8 @@ const Questions = () => {
           id: key,
           text: responseData[key].text,
           status: responseData[key].status,
+          yesShareQuantity: responseData[key].yesShareQuantity,
+          noShareQuantity: responseData[key].noShareQuantity,
 
         });
       }
@@ -73,6 +75,7 @@ const Questions = () => {
       key={category.id}
       id={category.id}
       name={category.name}
+
     />
   ));
 
@@ -83,6 +86,8 @@ const Questions = () => {
       id={question.id}
       text={question.text}
       status={question.status}
+      yesShareQuantity={question.yesShareQuantity}
+      noShareQuantity={question.noShareQuantity}
     />
   ));
 

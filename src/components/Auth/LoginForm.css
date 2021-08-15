@@ -59,11 +59,13 @@ textarea:focus {
 }
 
 .input_error::-webkit-input-placeholder {
-  color: rgb(216, 118, 118);
+  color: rgb(235, 158, 158);
 }
 
+
+
 .input_error:focus::-webkit-input-placeholder {
-  color: rgb(216, 118, 118);
+  color: rgb(196, 28, 28);
 }
 
 .input_error:focus{
@@ -302,7 +304,7 @@ input:-moz-placeholder {
   color: #999;
 }
 input:focus {
-  border-bottom: 1px solid #316ca3;
+  border-bottom: 1px solid #050505;
 }
 input:focus::-webkit-input-placeholder {
   color: #222;

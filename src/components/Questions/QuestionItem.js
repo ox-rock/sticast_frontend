@@ -1,12 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { PieChart } from 'react-minimal-pie-chart';
+
 
 const useStyles = makeStyles({
   root: {
@@ -16,8 +16,17 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140,
+    marginTop: 25,
+    marginBottom: 15,
   },
 });
+
+const defaultLabelStyle = {
+  fontSize: '1rem',
+  fontFamily: 'Segoe UI',
+};
+
+
 
 const QuestionItem = (props) => {
   const classes = useStyles();
@@ -30,7 +39,18 @@ const QuestionItem = (props) => {
           className={classes.media}
           image="#"
           title="Contemplative Reptile"
-        />
+        ><PieChart
+        data={[
+          { title: 'Yes', value: props.yesShareQuantity, color: '#4f81bc' },
+          { title: 'No', value: props.noShareQuantity, color: '#c0504e' },
+        ]}
+        animate={true}
+        label={({ dataEntry }) => dataEntry.title}
+        labelStyle={{
+          ...defaultLabelStyle,
+        }}
+        
+      /></CardMedia>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
           {props.text}

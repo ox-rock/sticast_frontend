@@ -45,20 +45,20 @@ const MainNavigation = () => {
             </li>
           )}
           {isLoggedIn && (
-
-
-<div class={classes.dropdown}>
-  <button class={classes.dropbtn}><i className="bi bi-person-circle"></i> {username} <i className="bi bi-caret-down-fill"></i></button>
-  <div class={classes.dropdowncontent}>
-  <Link to="/profile">Profile</Link>
-  <Link to="/logout" onClick={logoutHandler}>Logout</Link>
-  <hr className={classes.solid}></hr>
-  <Link to="/#">Budget: {userBudget}$</Link>
-  </div>
-</div>
-
-
-           
+            <div class={classes.dropdown}>
+              <button class={classes.dropbtn}>
+                <i className="bi bi-person-circle"></i> {username}{" "}
+                <i className="bi bi-caret-down-fill"></i>
+              </button>
+              <div class={classes.dropdowncontent}>
+                <Link to="/profile">Profile</Link>
+                <Link to="/logout" onClick={logoutHandler}>
+                  Logout
+                </Link>
+                <hr className={classes.solid}></hr>
+                <Link to="/#">Budget: {userBudget}$</Link>
+              </div>
+            </div>
           )}
         </ul>
       </nav>
