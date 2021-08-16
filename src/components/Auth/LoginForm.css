@@ -9,39 +9,6 @@ display-flex,
   
 }
 
-a:focus,
-a:active {
-  text-decoration: none;
-  outline: none;
-  transition: all 300ms ease 0s;
-  -moz-transition: all 300ms ease 0s;
-  -webkit-transition: all 300ms ease 0s;
-  -o-transition: all 300ms ease 0s;
-  -ms-transition: all 300ms ease 0s;
-}
-
-input,
-select,
-textarea {
-  outline: none;
-  appearance: unset !important;
-  -moz-appearance: unset !important;
-  -webkit-appearance: unset !important;
-  -o-appearance: unset !important;
-  -ms-appearance: unset !important;
-  
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  appearance: none !important;
-  -moz-appearance: none !important;
-  -webkit-appearance: none !important;
-  -o-appearance: none !important;
-  -ms-appearance: none !important;
-  margin: 0;
-}
-
 input:focus,
 select:focus,
 textarea:focus {
@@ -61,7 +28,6 @@ textarea:focus {
 .input_error::-webkit-input-placeholder {
   color: rgb(235, 158, 158);
 }
-
 
 
 .input_error:focus::-webkit-input-placeholder {
@@ -98,11 +64,9 @@ h2 {
   font-size: 36px;
 }
 
-
 .clear {
   clear: both;
 }
-
 
 .container_2 {
   width: 900px;
@@ -189,15 +153,12 @@ h2 {
     }
 }
 
-
 .signup-form,
 .signup-image,
 .signin-form,
 .signin-image {
   width: 50%;
   overflow: hidden;
-  
-  
 }
 
 .signup-image {
@@ -237,17 +198,9 @@ figure {
   background: #4292dc;
 }
 
-
 #signin {
   margin-top: 16px;
   
-}
-
-.signup-image-link {
-  font-size: 14px;
-  color: #222;
-  display: block;
-  text-align: center;
 }
 
 .term-service {
@@ -269,7 +222,6 @@ figure {
 .bi{
   margin-right: 0.5rem;
 }
-
 
 .form-group {
   position: relative;

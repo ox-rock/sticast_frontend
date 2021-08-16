@@ -45,12 +45,12 @@ const MainNavigation = () => {
             </li>
           )}
           {isLoggedIn && (
-            <div class={classes.dropdown}>
-              <button class={classes.dropbtn}>
+            <div className={classes.dropdown}>
+              <button className={classes.dropbtn}>
                 <i className="bi bi-person-circle"></i> {username}{" "}
                 <i className="bi bi-caret-down-fill"></i>
               </button>
-              <div class={classes.dropdowncontent}>
+              <div className={classes.dropdowncontent}>
                 <Link to="/profile">Profile</Link>
                 <Link to="/logout" onClick={logoutHandler}>
                   Logout

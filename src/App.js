@@ -5,9 +5,8 @@ import UserProfile from "./components/Profile/UserProfile";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import QuestionsPage from "./pages/QuestionsPage";
-import AuthContext from "./store/auth-context";
 import RegistrationPage from "./pages/RegistrationPage";
-
+import AuthContext from "./store/auth-context";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -18,6 +17,7 @@ function App() {
         <Route path="/" exact>
           <HomePage />
         </Route>
+
         {!authCtx.isLoggedIn && (
           <Route path="/login">
             <AuthPage />
@@ -27,14 +27,17 @@ function App() {
         <Route path="/register">
           <RegistrationPage />
         </Route>
+
         <Route path="/questions">
-          <QuestionsPage />
+          {authCtx.isLoggedIn && <QuestionsPage />}
+          {!authCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
 
         <Route path="/profile">
           {authCtx.isLoggedIn && <UserProfile />}
           {!authCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
+
         <Route path="*">
           <Redirect to="/" />
         </Route>

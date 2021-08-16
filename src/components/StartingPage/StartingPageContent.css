@@ -1,28 +1,47 @@
 .starting {
-  text-align: justify;
-  animation: arrive 500ms ease-in-out 0.1s forwards;
-  opacity: 0;
+  text-align: center;
+  animation: fadein 1s;
 }
 
-.starting h2 {
-  font-size: 3rem;
+.item {
+  width: 23%;
+  display: inline-block;
+  margin-right: 3rem;
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+.item > img {
+  width: 70%;
+}
+
+.prova2 {
+  margin-top: 2rem;
+  height: 20px;
   text-align: center;
 }
 
-section > img {
-  width: 16rem;
+@keyframes arrive {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-@keyframes arrive {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, 100px, 0);
-    }
+@keyframes fadein {
+  0% {
+    opacity: 0;
     
-    
-    100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+  }
+
+  100% {
+    opacity: 1;
+   
+  }
 }
 

@@ -1,37 +1,74 @@
-.category_item{
-    background: white;
-    border-radius: 20px;
-    border: 1px solid rgb(236, 236, 236);
-    box-shadow: black;
-    display:inline-block;
-    margin-right: 1rem;
-    padding: 0.3rem 1.2rem;
-    box-shadow: 0px 1px 19.83px 0 rgba(0, 0, 0, 0.15);
-    color: rgb(66, 66, 66);
+.category_item {
+  background: white;
+  border-radius: 20px;
+  border: 1px solid rgb(236, 236, 236);
+  box-shadow: black;
+  display: inline-block;
+  margin: 0 0.5rem;
+  padding: 0.3rem 1.2rem;
+  box-shadow: 0px 1px 19.83px 0 rgba(0, 0, 0, 0.15);
+  color: rgb(66, 66, 66);
+  cursor: pointer;
 }
 
-.category_item:hover{
-    background: #141f2f;
-    color: white;
-
-}
-
-.categoriesList_container{
-    margin: 1rem;
-}
-
-.question_item{
-  
-    display:inline-block;
-    width: 25rem;
-    margin-right: 1rem;
-   
-    margin: 1rem;
-    transition: transform 250ms;
+.categories_container{
 
 }
 
-.question_item:hover{
-    transform: translateY(-10px);
+.categories_container h2{
+    margin-bottom: 1rem;
+    text-align: center;
+}
 
+.categories{
+    margin:auto;
+    width: fit-content;
+}
+
+.category_item:hover {
+  background: #141f2f;
+  color: white;
+}
+
+.MuiButtonBase-root:hover{
+background: rgb(236, 236, 236);
+
+}
+
+
+
+
+
+
+.questions_container{
+
+
+}
+
+.questions_container h2{
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.questions{
+    opacity: 1;
+    text-align: center;
+}
+
+.question_item {
+  display: inline-block;
+  width: 25rem;
+  margin: 1rem 0.5rem;
+  transition: transform 250ms;
+}
+
+.question_item:hover {
+  transform: translateY(-10px);
+}
+
+
+.pr {
+
+  animation: fadein 1s;
 }
