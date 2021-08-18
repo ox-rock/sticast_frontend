@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
 import QuestionsList from "../components/Questions/QuestionsList";
-import CategoriesList from "../components/Questions/CategoriesList";
 import AuthContext from "../store/auth-context";
-import { Fragment } from 'react';
+import SearchBar from "../components/Questions/SearchBar";
+
 
 const QuestionsPage = () => {
   const authCtx = useContext(AuthContext);
@@ -35,7 +35,8 @@ const QuestionsPage = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await fetch("http://localhost:8080/api/questions", {
+      
+      const response = await fetch("http://localhost:8080/api/questions?category=all", {
         headers: {
           Authorization: "Bearer " + authCtx.token,
         },
@@ -53,7 +54,7 @@ const QuestionsPage = () => {
           noShareQuantity: responseData[key].noShareQuantity,
         });
       }
-
+      
       setQuestions(loadedQuestions);
     };
 
@@ -61,8 +62,7 @@ const QuestionsPage = () => {
   }, [authCtx.token]);
 
   async function fetchQuestionsByCategories(category) {
-    //const category = queryParams.get('category');
-    const response = await fetch(
+     const response = await fetch(
       `http://localhost:8080/api/questions?category=${category}`,
       {
         headers: {
@@ -90,21 +90,16 @@ const QuestionsPage = () => {
   return (
     <div className="pr">
       <div className="categories_container">
-        <h2>Categories</h2>
-        <div className="categories">
-          <CategoriesList
-            onClick={fetchQuestionsByCategories}
-            categoriesList={categories}
-          />
-        </div>
+        <SearchBar categoriesList={categories} onClick={fetchQuestionsByCategories}/>
       </div>
       <div className="questions_container">
-        <h2>Questions</h2>
+        <div className="lol"><b>Q</b>uestions</div>
+        <hr className="rounded"></hr>
         <div className="questions">
           <QuestionsList questionsList={questions} />
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 

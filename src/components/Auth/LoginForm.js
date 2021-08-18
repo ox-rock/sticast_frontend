@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
-import "./LoginForm.css";
 import { CSSTransition } from "react-transition-group";
 import signinimg from "./signin.jpg";
+import "./LoginForm.css";
 
 const LoginForm = (props) => {
   const [showMessage, setShowMessage] = useState(false);
@@ -87,7 +87,6 @@ const LoginForm = (props) => {
           setErrorMessage(data.errors);
           setShowMessage(true);
         } else {
-          console.log(data);
           const expirationTime = new Date(
             new Date().getTime() + +data.expirationTime * 1000
           );

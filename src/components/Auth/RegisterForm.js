@@ -97,8 +97,7 @@ const RegisterForm = (props) => {
     setenteredEmailTouched(true);
 
     if (!formIsValid) {
-      console.log("prova");
-      return;
+       return;
     }
 
     fetch("http://localhost:8080/api/register", {
@@ -131,7 +130,7 @@ const RegisterForm = (props) => {
         }
       })
       .then((data) => {
-        console.log(data);
+
         const expirationTime = new Date(
           new Date().getTime() + +data.expirationTime * 1000
         );

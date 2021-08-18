@@ -1,6 +1,9 @@
 .starting {
   text-align: center;
   animation: fadein 1s;
+  background-color: rgb(211, 211, 211);
+  border-radius: 20px;
+  padding: 2rem
 }
 
 .item {
@@ -9,15 +12,15 @@
   margin-right: 3rem;
   margin-bottom: 2rem;
   text-align: justify;
+  animation: fadein 1s;
 }
 
 .item > img {
-  width: 70%;
+  width: 50%;
 }
 
 .prova2 {
   margin-top: 2rem;
-  height: 20px;
   text-align: center;
 }
 

@@ -7,7 +7,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { PieChart } from 'react-minimal-pie-chart';
 
-
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
