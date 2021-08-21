@@ -11,14 +11,6 @@
   cursor: pointer;
 }
 
-.categories_container {
-}
-
-.categories_container h2 {
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
 .categories {
   margin: auto;
   width: fit-content;
@@ -29,47 +21,26 @@
   color: white;
 }
 
-.MuiButtonBase-root:hover {
-  background: rgb(236, 236, 236);
-}
-
-.questions_container {
-  margin: auto;
-}
-
-.questions_container h2 {
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-.questions {
-  opacity: 1;
-  text-align: center;
-}
-
 .box {
   cursor: pointer;
   transition: transform 250ms;
-  
 }
 
 .box:hover {
-  transform: translateY(-15px);
-  
+  transform: translateY(-8px);
 }
 
-/* Solid border */
-hr.solid {
-  border-top: 3px solid #bbb;
+.fs-2.mb-3 {
+  margin-top: -1rem;
+  text-align: center;
+  font-size: 5px;
+}
+.fs-2.mb-3 p {
+  display: block;
+  font-size: 18px;
 }
 
-/* Rounded border */
-hr.rounded {
-  border-top: 8px solid #bbb;
-  border-radius: 5px;
-}
-
-.pr{
-  animation: fadein 1s;
+.bi.bi-chevron-double-down,
+.bi.bi-chevron-double-up {
+  cursor: pointer;
 }

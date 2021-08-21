@@ -24,7 +24,7 @@ const QuestionItem = (props) => {
           <div class="content">
           <article class="message">
             <div class="message-header">
-              {props.text} <CategoryItem name="sport"></CategoryItem>
+              {props.text} <CategoryItem name={props.category}></CategoryItem>
     
             </div>
             <div class="message-body">

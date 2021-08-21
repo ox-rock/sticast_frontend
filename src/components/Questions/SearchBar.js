@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import Select from "react-select";
 
 const SearchBar = (props) => {
+  const [advancedSearchDisplayed, setadvancedSearchDisplayed] = useState(false);
+
   const categories = [{ value: "all", label: "all" }];
 
   const responseData = props.categoriesList;
@@ -50,6 +52,21 @@ const SearchBar = (props) => {
     props.onClick(enteredCategory);
   };
 
+  const formClickHandler = (event) => {
+    if(advancedSearchDisplayed)
+      setadvancedSearchDisplayed(false);
+      else
+      setadvancedSearchDisplayed(true);
+  };
+
+  const advancedSearchDiv = advancedSearchDisplayed
+    ? "advance-search"
+    : "advance-search hidden";
+
+    const buttonsSearchDiv = advancedSearchDisplayed
+    ? "fs-2 mb-3 hidden"
+    : "fs-2 mb-3"; 
+
   return (
     <div className="s007">
       <form>
@@ -67,7 +84,12 @@ const SearchBar = (props) => {
               />
             </div>
           </div>
-          <div className="advance-search">
+          <div class={buttonsSearchDiv}>
+            <p>Advanced Search</p>
+            <i className="bi bi-chevron-double-down" onClick={formClickHandler}></i>
+           
+          </div>
+          <div className={advancedSearchDiv}>
             <span className="desc">Advanced Search</span>
 
             <div className="boh">Category</div>
@@ -82,16 +104,17 @@ const SearchBar = (props) => {
               onChange={(option) => statusChangeHandler(option)}
             />
 
-            <div className="row third">
+           
               <div className="input-field">
                 <button className="btn-search" onClick={submitHandler}>
                   Search
                 </button>
-                
+              
               </div>
-
+              <div class="fs-2 mb-3">
+                  <i className="bi bi-chevron-double-up" onClick={formClickHandler} ></i>
+                </div>
           
-            </div>
           </div>
         </div>
       </form>

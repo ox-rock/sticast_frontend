@@ -4,12 +4,13 @@ import img2 from "./pencil.png";
 import img3 from "./coding.png";
 import img4 from "./money.png";
 import { Fragment } from "react";
+import "./StartingPageContent.css"
 
 const StartingPageContent = () => {
   return (
     <Fragment>
+      <div className="title2">StiCast!</div>
       <div className="starting">
-        <b>StiCast! </b>
         is a forecasting platform where payoffs are tied to the outcomes of
         future events. Participants trade contracts associated to the occurrence
         of a given event. The market exchange of contracts determines their

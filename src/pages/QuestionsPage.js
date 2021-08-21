@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import QuestionsList from "../components/Questions/QuestionsList";
 import AuthContext from "../store/auth-context";
 import SearchBar from "../components/Questions/SearchBar";
-
+import { Fragment } from "react";
 
 const QuestionsPage = () => {
   const authCtx = useContext(AuthContext);
@@ -35,12 +35,14 @@ const QuestionsPage = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      
-      const response = await fetch("http://localhost:8080/api/questions?category=all", {
-        headers: {
-          Authorization: "Bearer " + authCtx.token,
-        },
-      });
+      const response = await fetch(
+        "http://localhost:8080/api/questions?category=all",
+        {
+          headers: {
+            Authorization: "Bearer " + authCtx.token,
+          },
+        }
+      );
       const responseData = await response.json();
 
       const loadedQuestions = [];
@@ -52,17 +54,17 @@ const QuestionsPage = () => {
           status: responseData[key].status,
           yesShareQuantity: responseData[key].yesShareQuantity,
           noShareQuantity: responseData[key].noShareQuantity,
+          category: responseData[key].categories[0].name,
         });
       }
-      
-      setQuestions(loadedQuestions);
+       setQuestions(loadedQuestions);
     };
 
     fetchQuestions();
   }, [authCtx.token]);
 
   async function fetchQuestionsByCategories(category) {
-     const response = await fetch(
+    const response = await fetch(
       `http://localhost:8080/api/questions?category=${category}`,
       {
         headers: {
@@ -88,17 +90,15 @@ const QuestionsPage = () => {
   }
 
   return (
-    <div className="container">
-      <div className="categories_container">
-        <SearchBar categoriesList={categories} onClick={fetchQuestionsByCategories}/>
+    <Fragment>
+      <SearchBar
+        categoriesList={categories}
+        onClick={fetchQuestionsByCategories}
+      />
+      <div className="columns is-multiline is-desktop">
+        <QuestionsList questionsList={questions} />
       </div>
-      <div className="questions_container">
-      <div class="divider">Questions</div>
-        <div className="columns is-multiline is-desktop">
-          <QuestionsList questionsList={questions} />
-        </div>
-      </div>
-    </div>
+    </Fragment>
   );
 };
 

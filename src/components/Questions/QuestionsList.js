@@ -10,6 +10,7 @@ const QuestionsList = (props) => {
         status={question.status}
         yesShareQuantity={question.yesShareQuantity}
         noShareQuantity={question.noShareQuantity}
+        category={question.category}
       />
     </div>
   ));
