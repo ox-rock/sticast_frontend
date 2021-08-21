@@ -87,7 +87,10 @@ const SearchBar = (props) => {
                 <button className="btn-search" onClick={submitHandler}>
                   Search
                 </button>
+                
               </div>
+
+          
             </div>
           </div>
         </div>

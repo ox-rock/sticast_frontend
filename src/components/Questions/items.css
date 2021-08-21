@@ -48,15 +48,15 @@
   text-align: center;
 }
 
-.question_item {
-  display: inline-block;
-  width: 25rem;
-  margin: 1rem 0.5rem;
+.box {
+  cursor: pointer;
   transition: transform 250ms;
+  
 }
 
-.question_item:hover {
-  transform: translateY(-10px);
+.box:hover {
+  transform: translateY(-15px);
+  
 }
 
 /* Solid border */

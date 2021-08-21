@@ -1,71 +1,65 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import { PieChart } from 'react-minimal-pie-chart';
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    textAlign: 'left',
-    
-  },
-  media: {
-    height: 140,
-    marginTop: 25,
-    marginBottom: 15,
-  },
-});
-
-const defaultLabelStyle = {
-  fontSize: '1rem',
-  fontFamily: 'Segoe UI',
-};
-
-
+import React from "react";
+import CanvasJSReact from "./canvasjs.react";
+import CategoryItem from "./CategoryItem";
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const QuestionItem = (props) => {
-  const classes = useStyles();
+  const options = {
+    data: [
+      {
+        type: "doughnut",
+        dataPoints: [
+          { label: "Yes", y: props.yesShareQuantity },
+          { label: "No", y: props.noShareQuantity },
+        ],
+      },
+    ],
+  };
+
+  <CanvasJSChart options={options} />;
 
   return (
-    <div className="question_item">
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="#"
-          title="Contemplative Reptile"
-        ><PieChart
-        data={[
-          { title: 'Yes', value: props.yesShareQuantity, color: '#4f81bc' },
-          { title: 'No', value: props.noShareQuantity, color: '#c0504e' },
-        ]}
-        animate={true}
-        label={({ dataEntry }) => dataEntry.title}
-        labelStyle={{
-          ...defaultLabelStyle,
-        }}
-        
-      /></CardMedia>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-          {props.text}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
     
-    </Card>
-    </div>
+      <div class="box">
+          <div class="content">
+          <article class="message">
+            <div class="message-header">
+              {props.text} <CategoryItem name="sport"></CategoryItem>
+    
+            </div>
+            <div class="message-body">
+              <nav class="level">
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Forecasts</p>
+                    <p class="title">3,456</p>
+                  </div>
+                </div>
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Followers</p>
+                    <p class="title">123</p>
+                  </div>
+                </div>
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Creation date</p>
+                    <p class="title">456K</p>
+                  </div>
+                </div>
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Expiration date</p>
+                    <p class="title">22/2/2021</p>
+                  </div>
+                </div>
+              </nav>{" "}
+            </div>
+          </article>
+        </div>
+      </div>
+   
   );
-}
-
+};
 
 export default QuestionItem;
-

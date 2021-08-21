@@ -57,7 +57,7 @@
   min-width: 100px;
   height: 40px;
   padding: 0 15px;
-  background: #57b846;
+  background: #183897;
   white-space: nowrap;
   border-radius: 3px;
   font-size: 14px;
@@ -70,7 +70,7 @@
 }
 
 .s007 form .inner-form .input-field .btn-search:hover {
-  background: #4ea63f;
+  background: #141f2f;
 }
 
 .s007 form .inner-form .input-field .btn-delete {
@@ -95,7 +95,7 @@
 
 .s007 form .inner-form .basic-search {
   margin-bottom: 5px;
-  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.15);
 }
 
 .s007 form .inner-form .basic-search .input-field {

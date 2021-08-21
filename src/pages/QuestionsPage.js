@@ -88,14 +88,13 @@ const QuestionsPage = () => {
   }
 
   return (
-    <div className="pr">
+    <div className="container">
       <div className="categories_container">
         <SearchBar categoriesList={categories} onClick={fetchQuestionsByCategories}/>
       </div>
       <div className="questions_container">
-        <div className="lol"><b>Q</b>uestions</div>
-        <hr className="rounded"></hr>
-        <div className="questions">
+      <div class="divider">Questions</div>
+        <div className="columns is-multiline is-desktop">
           <QuestionsList questionsList={questions} />
         </div>
       </div>
