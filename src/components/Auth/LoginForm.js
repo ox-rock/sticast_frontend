@@ -43,12 +43,12 @@ const LoginForm = (props) => {
     setenteredPassword(event.target.value);
   };
 
-  const usernameBlurHandler = (event) => {
+  const usernameBlurHandler = () => {
     setProva(false);
     setenteredUsernameTouched(true);
   };
 
-  const passwordBlurHandler = (event) => {
+  const passwordBlurHandler = () => {
     setProva(false);
     setenteredPasswordTouched(true);
   };

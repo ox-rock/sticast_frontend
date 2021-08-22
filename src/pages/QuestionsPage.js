@@ -55,6 +55,10 @@ const QuestionsPage = () => {
           yesShareQuantity: responseData[key].yesShareQuantity,
           noShareQuantity: responseData[key].noShareQuantity,
           category: responseData[key].categories[0].name,
+          followers: responseData[key].followers,
+          forecasts: responseData[key].forecastsNumber,
+          expirationDate: responseData[key].expirationDate,
+          creationDate: responseData[key].creationDate,
         });
       }
        setQuestions(loadedQuestions);

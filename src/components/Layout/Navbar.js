@@ -25,10 +25,11 @@ const Navbar = () => {
     >
       <div className="container">
         <div className="navbar-brand">
-          <Link to={'/'} >
-            <div className="navbar-item is-size-4"><b>StiCast!</b></div>
+          <Link to={"/"}>
+            <div className="navbar-item is-size-4">
+              <b>StiCast!</b>
+            </div>
           </Link>
-          
 
           <a
             role="button"

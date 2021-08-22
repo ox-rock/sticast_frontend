@@ -11,6 +11,10 @@ const QuestionsList = (props) => {
         yesShareQuantity={question.yesShareQuantity}
         noShareQuantity={question.noShareQuantity}
         category={question.category}
+        followers={question.followers}
+        creationDate={question.creationDate}
+        expirationDate={question.expirationDate}
+        forecasts={question.forecasts}
       />
     </div>
   ));

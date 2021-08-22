@@ -4,6 +4,7 @@ import Layout from "./components/Layout/Layout";
 import UserProfile from "./components/Profile/UserProfile";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
+import QuestionPage from "./pages/QuestionPage";
 import QuestionsPage from "./pages/QuestionsPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import AuthContext from "./store/auth-context";
@@ -30,6 +31,11 @@ function App() {
 
         <Route path="/questions">
           {authCtx.isLoggedIn && <QuestionsPage />}
+          {!authCtx.isLoggedIn && <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/question/:id">
+          {authCtx.isLoggedIn && <QuestionPage />}
           {!authCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
 
