@@ -49,7 +49,7 @@ const QuestionsPage = () => {
 
       for (const key in responseData) {
         loadedQuestions.push({
-          id: key,
+          id: responseData[key].id,
           text: responseData[key].text,
           status: responseData[key].status,
           yesShareQuantity: responseData[key].yesShareQuantity,

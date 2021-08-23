@@ -18,30 +18,32 @@ const StartingPageContent = () => {
         confidence of the market in the future occurrence of the associated
         event.
       </div>
+      <div id="startingpage__imgs">
       <div className="columns is-multiline is-desktop has-text-centered">
         <div className="column">
-          <img src={img} alt="aaa"></img>
+          <img class="image" src={img} alt="aaa"></img>
           <br></br>
           <b>Choose a question</b> <br></br>Filter by category and browse for
           your favourite questions.
         </div>
         <div className="column">
-          <img src={img2} alt="aaa"></img>
+          <img class="image" src={img2} alt="aaa"></img>
           <br></br>
           <b>Make your forecast</b> <br></br>Add your predictions and influence
           the trend of the questions.
         </div>
         <div className="column">
-          <img src={img3} alt="aaa"></img>
+          <img class="image" src={img3} alt="aaa"></img>
           <br></br>
           <b>Update your forecast</b> <br></br>While a question is still open
           you can always change your prediction.
         </div>
         <div className="column">
-          <img src={img4} alt="aaa"></img>
+          <img class="image" src={img4} alt="aaa"></img>
           <br></br>
           <b>Earn rewards</b> <br></br>When the answer is known, check if your
           prediction was right and how much you won.
+        </div>
         </div>
       </div>
     </Fragment>

@@ -108,8 +108,8 @@ const LoginForm = (props) => {
       <div className="container_2">
         <div className="signin-content">
           <div className="signin-image">
-            <figure>
-              <img src={signinimg} alt="sing up"></img>
+            <figure id="auth__imgs">
+              <img className="image" src={signinimg} alt="sing up"></img>
             </figure>
           </div>
 

@@ -3,6 +3,8 @@ import AuthContext from "../../store/auth-context";
 import CanvasJSReact from "./canvasjs.react";
 import { useLocation } from "react-router-dom";
 import "./main.css";
+import followedIcon from "../../img/follow.png";
+import notfollowedIcon from "../../img/unfollow.png";
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -142,8 +144,6 @@ const Question = () => {
   };
 
 
-
-
   useEffect(() => {
     const fetchQuestion = async () => {
       const response = await fetch(
@@ -198,7 +198,10 @@ const Question = () => {
           <CanvasJSChart options={options} />
         </div>
         <div className="column">
-          <div className="column has-text-centered is-full">icona</div>
+          <div className="column has-text-centered is-full">
+              {question.followed && (<img src={followedIcon}></img>)}
+              {!question.followed && (<img src={notfollowedIcon}></img>)}
+          </div>
 
           <div className="column has-text-centered ">
             <nav class="level">
