@@ -2,8 +2,8 @@
 const CommentForm = () => {
 
   return (
-    <div className="columns is-justify-content-center mt-6">
-    <div className="column is-half">
+    <div className="columns mt-6">
+    <div className="column">
     <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">

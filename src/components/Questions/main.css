@@ -137,12 +137,6 @@
   margin-top: 5rem;
 }
 
-
-
-
-
-
-
 .tab-group {
   list-style: none;
   padding: 0;
@@ -155,19 +149,18 @@
   clear: both;
 }
 
-.astyle{
+.astyle {
   display: block;
   text-decoration: none;
   padding: 15px;
-  background: #C7D0CD;
+  background: #c7d0cd;
   color: #ffffff;
   font-size: 20px;
   float: left;
   width: 50%;
   text-align: center;
   cursor: pointer;
-  transition: .5s ease;
-
+  transition: 0.5s ease;
 }
 
 .astyle:hover {
@@ -186,4 +179,8 @@
 
 img {
   width: 8%;
+}
+
+.label {
+  width: fit-content;
 }

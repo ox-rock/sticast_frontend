@@ -2,12 +2,14 @@ import { useEffect, useState, useContext } from "react";
 import QuestionsList from "../components/Questions/QuestionsList";
 import AuthContext from "../store/auth-context";
 import SearchBar from "../components/Questions/SearchBar";
+import ShowViewportWidth from "../components/Utils/ShowViewportWidth";
 import { Fragment } from "react";
 
 const QuestionsPage = () => {
   const authCtx = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
+
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -61,7 +63,7 @@ const QuestionsPage = () => {
           creationDate: responseData[key].creationDate,
         });
       }
-       setQuestions(loadedQuestions);
+      setQuestions(loadedQuestions);
     };
 
     fetchQuestions();
@@ -93,14 +95,16 @@ const QuestionsPage = () => {
     setQuestions(loadedQuestions);
   }
 
+
   return (
     <Fragment>
       <SearchBar
         categoriesList={categories}
         onClick={fetchQuestionsByCategories}
       />
+      <ShowViewportWidth />
       <div className="columns is-multiline is-desktop">
-        <QuestionsList questionsList={questions} />
+         <QuestionsList questionsList={questions} />
       </div>
     </Fragment>
   );

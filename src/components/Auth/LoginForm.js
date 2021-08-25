@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import { CSSTransition } from "react-transition-group";
-import signinimg from "./signin.jpg";
+import signinimg from "./signin.png";
 import "./LoginForm.css";
 
 const LoginForm = (props) => {
@@ -114,7 +114,7 @@ const LoginForm = (props) => {
           </div>
 
           <div className="signin-form">
-            <h2 className="form-title">Login</h2>
+            <h2 className="form-title is-size-3"><b>L</b>ogin</h2>
 
             <CSSTransition
               in={showMessage}

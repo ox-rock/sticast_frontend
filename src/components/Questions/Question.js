@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import "./main.css";
 import followedIcon from "../../img/follow.png";
 import notfollowedIcon from "../../img/unfollow.png";
+import ShowViewportWidth from "../Utils/ShowViewportWidth";
+import Chart from "react-google-charts";
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -130,19 +132,30 @@ const Question = () => {
   };
 
   const calculateMaxYesShareBuyable = () => {
-  
-    var maxYes = Math.floor(100.0*Math.log((Math.exp((+userBudget + +question_yesShareQnt)/100.0)+Math.exp((+userBudget + +question_noShareQnt)/100.0)-Math.exp(+question_noShareQnt/100.0))));
+    var maxYes = Math.floor(
+      100.0 *
+        Math.log(
+          Math.exp((+userBudget + +question_yesShareQnt) / 100.0) +
+            Math.exp((+userBudget + +question_noShareQnt) / 100.0) -
+            Math.exp(+question_noShareQnt / 100.0)
+        )
+    );
 
-    return (maxYes - question_yesShareQnt);
+    return maxYes - question_yesShareQnt;
   };
 
   const calculateMaxNoShareBuyable = () => {
-  
-    var maxNo = Math.floor(100.0*Math.log((Math.exp((+userBudget + +question_yesShareQnt)/100.0)+Math.exp((+userBudget + +question_noShareQnt)/100.0)-Math.exp(+question_yesShareQnt/100.0))));
+    var maxNo = Math.floor(
+      100.0 *
+        Math.log(
+          Math.exp((+userBudget + +question_yesShareQnt) / 100.0) +
+            Math.exp((+userBudget + +question_noShareQnt) / 100.0) -
+            Math.exp(+question_yesShareQnt / 100.0)
+        )
+    );
 
-    return (maxNo - question_noShareQnt);
+    return maxNo - question_noShareQnt;
   };
-
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -178,7 +191,9 @@ const Question = () => {
   const divSellButton = formBuy ? "tab" : "tab active";
 
   const maxQuantitySell = yesSelect ? yesShareQuantity : noShareQuantity;
-  const maxQuantityBuy = yesSelect ? calculateMaxYesShareBuyable() : calculateMaxNoShareBuyable();
+  const maxQuantityBuy = yesSelect
+    ? calculateMaxYesShareBuyable()
+    : calculateMaxNoShareBuyable();
 
   const totalBuy = yesSelect
     ? calculateYesShareBuyPayout()
@@ -189,134 +204,131 @@ const Question = () => {
     : calculateNoShareSellPayout();
 
   return (
-    <div className="questiondiv">
-      <div className="columns is-desktop is-multiline">
-        <div className="column is-12 has-text-centered is-size-2">
+    <div className="columns is-desktop is-multiline mt-6">
+      <div className="column is-12 has-text-centered is-size-2">
+        <div className="is-size-2 is-size-4-mobile">
           <b>{location.state.question.text}</b>
         </div>
+      </div>
+      <div className="column">
+        <CanvasJSChart options={options} />
+      </div>
+      <div className="column">
+        <div className="column has-text-centered is-full">
+          {question.followed && <img src={followedIcon}></img>}
+          {!question.followed && <img src={notfollowedIcon}></img>}
+          <ShowViewportWidth />
+        </div>
+
+        <div className="column has-text-centered ">
+          <nav class="level is-mobile">
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Yes</p>
+                <p class="title">{yesShareQuantity}</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">No</p>
+                <p class="title">{noShareQuantity}</p>
+              </div>
+            </div>
+          </nav>
+        </div>
+
         <div className="column">
-          <CanvasJSChart options={options} />
+          <div class="tab-group">
+            <ul class="tab-group">
+              <li class={divBuyButton} onClick={formBuyChangeHandler}>
+                <div className="astyle">Buy</div>
+              </li>
+              <li class={divSellButton} onClick={formSellChangeHandler}>
+                <div className="astyle">Sell</div>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="column">
-          <div className="column has-text-centered is-full">
-              {question.followed && (<img src={followedIcon}></img>)}
-              {!question.followed && (<img src={notfollowedIcon}></img>)}
-          </div>
+          <form>
+            {formBuy === true && (
+              <div className="columns is-multiline is-mobile">
+                <div class="column has-text-centered is-6-mobile">
+                  <div class="is-size-6 mb-2">
+                    <b>Type</b>
+                  </div>
+                  <div class="select">
+                    <select onChange={onChangeSelectHandler}>
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                </div>
 
-          <div className="column has-text-centered ">
-            <nav class="level">
-              <div class="level-item has-text-centered">
-                <div>
-                  <p class="heading">Yes</p>
-                  <p class="title">{yesShareQuantity}</p>
+                <div class="column is-6-mobile">
+                  <div class="has-text-centered is-size-6 mb-2">
+                    <b>Quantity (max {maxQuantityBuy})</b>
+                  </div>
+                  <input
+                    class="input"
+                    type="number"
+                    placeholder="Insert quantity"
+                    onChange={onChangeQuantityInputHandler}
+                    value={enteredQuantity}
+                  />
+                </div>
+
+                <div class="column has-text-centered">
+                  <div class="has-text-centered is-size-6 mb-2">
+                    <b>Total: {totalBuy}$</b>
+                  </div>
+                  <button class="button is-link">Submit</button>
                 </div>
               </div>
-              <div class="level-item has-text-centered">
-                <div>
-                  <p class="heading">No</p>
-                  <p class="title">{noShareQuantity}</p>
-                </div>
-              </div>
-            </nav>
-          </div>
+            )}
 
-          <div className="column">
-            <div class="tab-group">
-              <ul class="tab-group">
-                <li class={divBuyButton} onClick={formBuyChangeHandler}>
-                  <div className="astyle">Buy</div>
-                </li>
-                <li class={divSellButton} onClick={formSellChangeHandler}>
-                  <div className="astyle">Sell</div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="column">
-            <form>
-              {formBuy === true && (
-                <div class="field is-horizontal">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="label">Type</div>
-                      <div class="control">
-                        <div class="select">
-                          <select onChange={onChangeSelectHandler}>
-                            <option>Yes</option>
-                            <option>No</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <div class="field-body">
-                        <div class="control">
-                          <div class="label">Quantity (max {maxQuantityBuy})</div>
-                          <input
-                            class="input"
-                            type="number"
-                            placeholder="Insert quantity"
-                            onChange={onChangeQuantityInputHandler}
-                            value={enteredQuantity}
-                          />
-                        </div>
+            {formBuy === false && (
+              <div class="field is-horizontal">
+                <div class="field-body">
+                  <div class="field">
+                    <div class="label">Type</div>
+                    <div class="control">
+                      <div class="select">
+                        <select onChange={onChangeSelectHandler}>
+                          <option>Yes</option>
+                          <option>No</option>
+                        </select>
                       </div>
                     </div>
                   </div>
                   <div class="field">
-                    <div class="field-body is-justify-content-flex-end">
+                    <div class="field-body">
                       <div class="control">
-                        <div class="label">Total: {totalBuy}$</div>
-                        <button class="button is-link">Submit</button>
+                        <div class="label">
+                          Quantity (max {maxQuantitySell})
+                        </div>
+                        <input
+                          class="input"
+                          type="number"
+                          placeholder="Insert quantity"
+                          onChange={onChangeQuantityInputHandler}
+                          value={enteredQuantity}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
-
-              {formBuy === false && (
-                <div class="field is-horizontal">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="label">Type</div>
-                      <div class="control">
-                        <div class="select">
-                          <select onChange={onChangeSelectHandler}>
-                            <option>Yes</option>
-                            <option>No</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <div class="field-body">
-                        <div class="control">
-                          <div class="label">
-                            Quantity (max {maxQuantitySell})
-                          </div>
-                          <input
-                            class="input"
-                            type="number"
-                            placeholder="Insert quantity"
-                            onChange={onChangeQuantityInputHandler}
-                            value={enteredQuantity}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="field-body is-justify-content-flex-end">
-                      <div class="control">
-                        <div class="label">Total: {totalSell}$</div>
-                        <button class="button is-link">Submit</button>
-                      </div>
+                <div class="field">
+                  <div class="field-body is-justify-content-flex-end">
+                    <div class="control">
+                      <div class="label">Total: {totalSell}$</div>
+                      <button class="button is-link">Submit</button>
                     </div>
                   </div>
                 </div>
-              )}
-            </form>
-          </div>
+              </div>
+            )}
+          </form>
         </div>
       </div>
     </div>

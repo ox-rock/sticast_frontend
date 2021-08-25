@@ -2,7 +2,7 @@ import QuestionItem from "./QuestionItem";
 
 const QuestionsList = (props) => {
   return props.questionsList.map((question) => (
-    <div className="column is-6">
+    <div className="column is-half-desktop">
       <QuestionItem
         key={question.id}
         id={question.id}

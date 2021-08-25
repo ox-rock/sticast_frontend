@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import "./LoginForm.css";
 import { CSSTransition } from "react-transition-group";
-import signupimg from "./signup.jpg";
+import signupimg from "./signup.png";
 
 const RegisterForm = (props) => {
   const [prova, setProva] = useState(false);
@@ -155,7 +155,7 @@ const RegisterForm = (props) => {
         <div className="container_2">
           <div className="signup-content">
             <div className="signup-form">
-              <h2 className="form-title">Registration</h2>
+              <h2 className="form-title is-size-3"><b>R</b>egistration</h2>
 
               <CSSTransition
                 in={showMessage}
@@ -280,8 +280,8 @@ const RegisterForm = (props) => {
               </form>
             </div>
             <div className="signup-image">
-              <figure>
-                <img src={signupimg} alt="sing up"></img>
+              <figure id="auth__imgs">
+                <img src={signupimg} className="image" alt="sing up"></img>
               </figure>
             </div>
           </div>
